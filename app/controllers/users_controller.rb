@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    User.find(params[:id])
+    @users = User.find(params[:id])
   end
 
   def create
@@ -18,8 +18,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def new
+    @user = User.new
+  end
+
   private
     def user_params
-      params.require(:user).permit(:name)
+      params.require(:user).permit(:name, :years_old, :major)
     end
 end
